@@ -1,4 +1,4 @@
-name: RFC propose
+name: RFC action
 
 on:
   issue_comment:
@@ -9,8 +9,8 @@ permissions:
   contents: write
 
 jobs:
-  rfc-propose:
-    name: Propose an RFC creation transaction
+  rfc-action:
+    name: Handle an RFC-relate command in a RFC proposal PR
     if: ${{ github.event.issue.pull_request && startsWith(github.event.comment.body, '/rfc') }}
     runs-on: ubuntu-latest
     steps:
