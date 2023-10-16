@@ -4,9 +4,9 @@ on:
   issue_comment:
     types: [created]
 
-permissions:
-  pull-requests: write
-  contents: write
+# permissions:
+  # pull-requests: write
+  # contents: write
 
 jobs:
   rfc-action:
@@ -14,6 +14,6 @@ jobs:
     if: ${{ github.event.issue.pull_request && startsWith(github.event.comment.body, '/rfc') }}
     runs-on: ubuntu-latest
     steps:
-      - uses: paritytech/rfc-action@main
+      - uses: paritytech/rfc-action@rzadp/error-handle
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
