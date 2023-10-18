@@ -4,16 +4,18 @@ on:
   issue_comment:
     types: [created]
 
-permissions:
-  pull-requests: write
-  contents: write
-
 jobs:
   rfc-action:
     name: Handle an RFC-relate command in a RFC proposal PR
     if: ${{ github.event.issue.pull_request && startsWith(github.event.comment.body, '/rfc') }}
     runs-on: ubuntu-latest
     steps:
+      - name: Generate a token
+        id: generate_token
+        uses: actions/create-github-app-token@v1
+        with:
+          app_id: ${{ secrets.RFC_BOT_APP_ID }}
+          private_key: ${{ secrets.RFC_BOT_PRIVATE_KEY }}
       - uses: paritytech/rfc-action@main
-    env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GH_TOKEN: ${{ steps.generate_token.outputs.token }}
