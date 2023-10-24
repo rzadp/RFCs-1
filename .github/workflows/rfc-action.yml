@@ -16,6 +16,6 @@ jobs:
         with:
           app_id: ${{ secrets.RFC_BOT_APP_ID }}
           private_key: ${{ secrets.RFC_BOT_PRIVATE_KEY }}
-      - uses: paritytech/rfc-action@main
+      - uses: paritytech/rfc-action@rzadp/print
         env:
           GH_TOKEN: ${{ steps.generate_token.outputs.token }}
