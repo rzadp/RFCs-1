@@ -35,7 +35,7 @@ jobs:
               // The git patches seems to be the only thing available right away.
               // The alternative would be to download the file contents but that adds API calls.
               // The patch in this object is not a full patch with valid syntax, so we need to modify it a bit - add a header.
-              const patch = `--- /dev/null\n+++ b/${rfcFile.filename}\n` + rfcFile.patch
+              const patch = `--- /dev/null\n+++ b/${rfcFile.filename}\n` + rfcFile.patch + "\n"
               require('fs').writeFileSync(`patches/${rfcFile.filename}.patch`, patch)
             }
       - run: |
