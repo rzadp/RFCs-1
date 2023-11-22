@@ -19,7 +19,6 @@ jobs:
             const owner = 'polkadot-fellows'
             const repo = 'RFCs'
             const prs = await github.paginate(github.rest.pulls.list, {owner, repo, state: 'open'})
-            console.log(`Found ${prs.length} PRs.`)
 
             for (const pr of prs) {
               const addedMarkdownFiles = (
@@ -32,7 +31,6 @@ jobs:
               );
               if (addedMarkdownFiles.length !== 1) continue;
               const [rfcFile] = addedMarkdownFiles;
-              console.log(rfcFile)
               // The git patches seems to be the only thing available right away.
               // The alternative would be to download the file contents but that adds API calls.
               // The patch in this object is not a full patch with valid syntax, so we need to modify it a bit - add a header.
@@ -40,7 +38,6 @@ jobs:
               require('fs').writeFileSync(`patches/${rfcFile.filename}.patch`, patch)
             }
       - run: |
-          ls -l patches/text
           for f in ./patches/text/*.patch;
           do
             git apply $f

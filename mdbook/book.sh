@@ -2,7 +2,7 @@
 set -euo pipefail
 cd $(dirname ${BASH_SOURCE[0]})
 
-rm -rf src && mkdir src
+mkdir -p src
 echo "# Summary\n" > src/SUMMARY.md
 
 mkdir src/approved
