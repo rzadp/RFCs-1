@@ -1,0 +1,5 @@
+[book]
+# title = "Example book"
+# authors = ["John Doe", "Jane Doe"]
+# description = "The example book covers examples."
+src = "."  # the source files will be found in `root/my-src` instead of `root/src`
