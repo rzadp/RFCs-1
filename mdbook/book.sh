@@ -10,10 +10,10 @@ cp ../text/*.md src/approved/
 
 for f in ./src/**/*.md;
 do
-echo ${f}
-echo ${f#./src/}
 echo "- [$f](${f#./src/})" >> src/SUMMARY.md;
 done
+
+cat src/SUMMARY.md
 
 rm -rf ../book/
 mdbook build
