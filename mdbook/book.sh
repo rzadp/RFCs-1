@@ -2,11 +2,18 @@
 set -euo pipefail
 cd $(dirname ${BASH_SOURCE[0]})
 
-echo "# Summary\n" > SUMMARY.md
+rm -rf src && mkdir src
+echo "# Summary\n" > src/SUMMARY.md
 
-for f in ../text/*.md;
+mkdir src/approved
+cp ../text/*.md src/approved/
+
+for f in ./src/**/*.md;
 do
-echo "- [$f]($f)" >> SUMMARY.md;
+echo ${f}
+echo ${f#./src/}
+echo "- [$f](${f#./src/})" >> src/SUMMARY.md;
 done
 
-mdbook build --dest-dir ../book
+rm -rf ../book/
+mdbook build
